@@ -1,0 +1,77 @@
+#######################################
+# Syntax Coloring Map for Sibeng24Regulator
+#######################################
+
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Sibeng24Regulator	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+OutRelay	KEYWORD2
+OutState	KEYWORD2
+setFactorySettings	KEYWORD2
+setAuto	KEYWORD2
+setManual	KEYWORD2
+setManualON	KEYWORD2
+setManualOFF	KEYWORD2
+setError	KEYWORD2
+setErrorState	KEYWORD2
+setType	KEYWORD2
+setRLL	KEYWORD2
+setDelta	KEYWORD2
+setTempSet	KEYWORD2
+setTempIn	KEYWORD2
+Alarm	KEYWORD2
+getModeState	KEYWORD2
+getType	KEYWORD2
+getRLL	KEYWORD2
+getDelta	KEYWORD2
+getTempSet	KEYWORD2
+getTempIn	KEYWORD2
+
+getId	KEYWORD2
+getCount	KEYWORD2
+
+printSet	KEYWORD2
+printAddr	KEYWORD2
+getEEPROMaddr	KEYWORD2
+
+checkEEPROM	KEYWORD2
+initEEPROM	KEYWORD2
+initAddrEEPROM	KEYWORD2
+ReadAllSettingsEEPROM	KEYWORD2
+
+initAddrEEPROM	KEYWORD2
+ReadAllSettingsEEPROM	KEYWORD2
+SaveAllSettingsEEPROM	KEYWORD2
+SaveSettigsEEPROM	KEYWORD2
+
+setFactorySettings	KEYWORD2
+setAllFactorySettings	KEYWORD2
+#######################################
+# Instances (KEYWORD1)
+#######################################
+
+Sibeng24Regulator	KEYWORD1
+Sibeng24RegulatorEEPROM	KEYWORD1
+Sibeng24RegulatorEEPROM_AVR	KEYWORD1	
+Sibeng24RegulatorEEPROM_ESP	KEYWORD1	
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+HEATER	LITERAL1
+COOLER	LITERAL1
+AUTOMODE	LITERAL1
+MANUALMODE	LITERAL1
+ERRORMODE	LITERAL1
+
+EEPROMaddr	LITERAL1
+EEPROMcheck	LITERAL1
+count	LITERAL1
