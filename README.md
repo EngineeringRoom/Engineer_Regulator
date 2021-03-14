@@ -26,6 +26,7 @@ url: https://www.youtube.com/channel/UCih0Gcl9IEdkR8deDJCiodg
 
 Ну и для удобства все методы класса доступные для вас.
 
+
 // Set "Сетеры"
 R.setAuto();      // Устанавливаем (Автоматический Режим)
 
