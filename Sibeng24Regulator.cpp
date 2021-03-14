@@ -229,7 +229,3 @@ void Sibeng24Regulator::printSet() {
 }
 
   uint8_t Sibeng24Regulator::count=0;        // Счетчик для ID класса (порядковый номер регулятора)
-
-
-////////////////////////////////////////////////
-// Работа с Sibeng24RegulatorEEPROM_ESP

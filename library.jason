@@ -1,0 +1,23 @@
+{
+  "name": "Sibeng24Regulator",
+  "keywords": "Sibeng24Regulator, Regulator, Sibeng24, hysteresis, heater, cooler, temperature, EEPROM",
+  "description": "Arduino library for temperature controller. Stores settings in EEPROM. Hysteresis",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/EngineeringRoom/Sibeng24Regulator.git"
+  },
+  "authors": 
+  [
+    {
+      "name": "Alexey Obushenkov",
+      "email": "sib.eng24@gmail.com",
+      "url": "https://www.youtube.com/channel/UCih0Gcl9IEdkR8deDJCiodg",
+      "maintainer": true
+    }
+  ],
+  "dependencies":"*",
+  "version": "1.0.0",
+  "frameworks": "arduino",
+  "platforms": "*"
+}

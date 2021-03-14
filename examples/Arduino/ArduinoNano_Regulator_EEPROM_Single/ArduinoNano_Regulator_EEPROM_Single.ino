@@ -32,22 +32,13 @@ Sibeng24RegulatorEEPROM_AVR R;    // Создаем регуляторов (эк
 
 
 void setup() {
-  pinMode(13, OUTPUT);     // Объявляем GPIO как выход
   pinMode(PIN_Relay, OUTPUT);     // Объявляем GPIO как выход
 
-  //R.setAllFactorySettings();
   Serial.begin(9600);
-//  while (!Serial) {
-//    ; // wait for serial port to connect. Needed for native USB port only
-//  }
-  Serial.println("Done");
-  R.printSet();  // Выводит в Serial все настройки регулятора
-  R.printAddr(); // Выводит таблицу Адресов
-
 
   // Настроим Регулятор(ы) (Достаточно один раз записать настройки, а после можно закоментировать)
   // Ведь настройки будут храниться в EEPROM
-  /*
+/*  
     R.setType(HEATER);    // Выбираем тип регулятора(HEATER, COOLER)
     R.setRLL(HIGH);       // Выбираем тип выходного сигнала Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)
     R.setErrorState(LOW); // Безопасное состояние логики реле (bool)
@@ -55,7 +46,9 @@ void setup() {
     R.setDelta(2.1);      // Устанавливаем Дельта (Гистерезис)
     R.setTempSet(20.5);   // Устанавливаем Уставку температуры
     R.setAuto();          // Выбираем (Автоматический Режим)
-  */
+*/
+  R.printSet();  // Выводит в Serial все настройки регулятора
+  R.printAddr(); // Выводит таблицу Адресов
 
   delay(5000); // Задержка просто так :-)
 }
@@ -65,7 +58,6 @@ void loop() {
 
   // Действие происходит по таймеру
   if (Timer(msR, TIMEOUT_R)) {
-    digitalWrite(13, !digitalRead(13));
     Serial.println();
     Serial.print(F("Regulator: "));       Serial.print(R.getId());          // Выводим ID Регулятора
     float temp = loopSensor();                                              // Опрашиваем датчик температуры
@@ -89,5 +81,6 @@ void loop() {
     else                Serial.print("OFF");
 
     Serial.println();
+    
   }
 }

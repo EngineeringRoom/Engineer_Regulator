@@ -2,7 +2,7 @@
 #define Sibeng24RegulatorEEPROM_h
 
 #include <EEPROM.h>
-#include <EEPROMAnything.h> // http://playground.arduino.cc/Code/EEPROMWriteAnything
+//#include <EEPROMAnything.h> // http://playground.arduino.cc/Code/EEPROMWriteAnything
 
 #include <Sibeng24Regulator.h>
 
@@ -12,6 +12,27 @@
 class Sibeng24RegulatorEEPROM : public Sibeng24Regulator {
 
   protected:
+  
+	 template <class T> int EEPROM_writeAnything(int ee, const T& value)
+	{
+		const byte* p = (const byte*)(const void*)&value;
+		unsigned int i;
+		for (i = 0; i < sizeof(value); i++)
+		  EEPROM.write(ee++, *p++);
+		return i;
+	}
+
+	template <class T> int EEPROM_readAnything(int ee, T& value)
+	{
+		byte* p = (byte*)(void*)&value;
+		unsigned int i;
+		for (i = 0; i < sizeof(value); i++)
+		  *p++ = EEPROM.read(ee++);
+		return i;
+	} 
+  
+  
+  
     // Статические переменные, одни и те же для всех экземпляров класса
     static uint16_t  EEPROMaddr;        // адрес EEPROM
     static uint16_t  EEPROMcheck;       // служит для проверки записанно у нас что то в EEPROM или нет                              
@@ -198,4 +219,4 @@ class Sibeng24RegulatorEEPROM : public Sibeng24Regulator {
   uint16_t  Sibeng24RegulatorEEPROM::EEPROMaddr=0;          // адрес EEPROM
   uint16_t  Sibeng24RegulatorEEPROM::EEPROMcheck=12456;     // служит для проверки записанно у нас что то в EEPROM или нет  
 
-#endif Sibeng24RegulatorEEPROM_h
+#endif

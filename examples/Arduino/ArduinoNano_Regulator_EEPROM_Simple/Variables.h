@@ -1,6 +1,6 @@
 ///////////////////////////////
 // Количество регуляторов
-const uint8_t  NumberOfRegulators = 3;
+const uint8_t  NumberOfRegulators = 13;
   
 
 ///////////////////////////////

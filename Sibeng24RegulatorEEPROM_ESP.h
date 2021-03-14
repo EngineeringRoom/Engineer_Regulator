@@ -79,4 +79,4 @@ public:
 
 }; // Sibeng24RegulatorEEPROM_ESP
 
-#endif Sibeng24RegulatorEEPROM_ESP_h
+#endif

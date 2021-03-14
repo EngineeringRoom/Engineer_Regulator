@@ -65,4 +65,4 @@ public:
 
 }; // Sibeng24RegulatorEEPROM_AVR
 
-#endif Sibeng24RegulatorEEPROM_AVR_h
+#endif
