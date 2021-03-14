@@ -1,0 +1,365 @@
+
+
+
+
+
+
+
+Started logging.
+
+>>>
+Content-Length: 2162
+
+{"method":"initialize","params":{"processId":9244,"rootPath":"C:\\Users\\36045\\AppData\\Local\\Temp\\arduino-language-server644108963\\sketch","rootUri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch","clientInfo":{"name":"vscode","version":"1.50.0"},"trace":"off","initializationOptions":{},"capabilities":{"workspace":{"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","rename","delete"]},"applyEdit":true,"symbol":{"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]}},"executeCommand":{"dynamicRegistration":true},"didChangeWatchedFiles":{"dynamicRegistration":true},"workspaceFolders":true,"configuration":true},"textDocument":{"declaration":{"linkSupport":true},"definition":{"linkSupport":true},"implementation":{"linkSupport":true,"dynamicRegistration":true},"typeDefinition":{"linkSupport":true},"synchronization":{"willSave":true,"didSave":true,"willSaveWaitUntil":true},"documentSymbol":{"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]},"hierarchicalDocumentSymbolSupport":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{"dynamicRegistration":true},"rename":{"dynamicRegistration":true,"prepareSupport":true},"codeAction":{"dynamicRegistration":true,"isPreferredSupport":true,"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["","quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}}},"completion":{"completionItem":{"documentationFormat":["markdown","plaintext"],"snippetSupport":true},"completionItemKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]},"contextSupport":true},"signatureHelp":{"signatureInformation":{"parameterInformation":{"labelOffsetSupport":true}}},"documentLink":{"dynamicRegistration":true,"tooltipSupport":true},"hover":{"contentFormat":["markdown","plaintext"]},"foldingRange":{"dynamicRegistration":true,"rangeLimit":5000,"lineFoldingOnly":true},"colorProvider":{"dynamicRegistration":true}},"window":{"workDoneProgress":true}}},"id":0,"jsonrpc":"2.0"}
+<<<
+Content-Length: 1671
+
+{"id":0,"jsonrpc":"2.0","result":{"capabilities":{"astProvider":true,"callHierarchyProvider":true,"codeActionProvider":{"codeActionKinds":["quickfix","refactor","info"]},"compilationDatabase":{"automaticReload":true},"completionProvider":{"allCommitCharacters":[" ","\t","(",")","[","]","{","}","<",">",":",";",",","+","-","/","*","%","^","&","#","?",".","=","\"","'","|"],"resolveProvider":false,"triggerCharacters":[".","<",">",":","\"","/"]},"declarationProvider":true,"definitionProvider":true,"documentFormattingProvider":true,"documentHighlightProvider":true,"documentLinkProvider":{"resolveProvider":false},"documentOnTypeFormattingProvider":{"firstTriggerCharacter":"\n","moreTriggerCharacter":[]},"documentRangeFormattingProvider":true,"documentSymbolProvider":true,"executeCommandProvider":{"commands":["clangd.applyFix","clangd.applyTweak"]},"hoverProvider":true,"implementationProvider":true,"memoryUsageProvider":true,"referencesProvider":true,"renameProvider":{"prepareProvider":true},"selectionRangeProvider":true,"semanticTokensProvider":{"full":{"delta":true},"legend":{"tokenModifiers":[],"tokenTypes":["variable","variable","parameter","function","method","function","property","variable","class","enum","enumMember","type","dependent","dependent","namespace","typeParameter","concept","type","macro","comment"]},"range":false},"signatureHelpProvider":{"triggerCharacters":["(",","]},"textDocumentSync":{"change":2,"openClose":true,"save":true},"typeHierarchyProvider":true,"workspaceSymbolProvider":true},"serverInfo":{"name":"clangd","version":"clangd version 12.0.0 (https://github.com/llvm/llvm-project e841bd5f335864b8c4d81cbf4df08460ef39f2ae)"}}}
+>>>
+Content-Length: 52
+
+{"method":"initialized","params":{},"jsonrpc":"2.0"}Content-Length: 6877
+
+{"method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp","languageId":"cpp","version":1,"text":"#include \u003cArduino.h\u003e\n#line 1 \"C:\\\\Users\\\\36045\\\\YandexDisk\\\\[1] Видеоканал\\\\[0] Урок ESP8266\\\\#092 Универсальный Регулятор Температуры (ESP8266 + Blynk)\\\\Sibeng24Regulator - 2021.03.09\\\\examples\\\\Arduino\\\\ArduinoNano_Regulator_EEPROM_Single\\\\ArduinoNano_Regulator_EEPROM_Single.ino\"\n/*\n    Простой скетч для работы с терморегулятором\n    Из коробки идет запись данных в EEPROM\n\n    Во вкладке Help.h находятся все методы класса\n\n    Залейте скетч и в первый раз увидете что все настройки регулятора базовые\n\n    Далее раскоментируйте настройки и залейте скетч, потом можно их закоментировать опять\n    ведь все настройки в EEPROM и перезалить скетч Что бы не мучить память\n\n    В этом скетче применен фейковый сенсор температуры\n\n    Если регулятору задать обратную логику setRLL(LOW) то состояние выходов ниже\n                                              | Включить реле ||Выключить реле |\n    OutState() - это выход логики регулятора  |     HIGH      ||     LOW       |\n    OutRelay() - это выход на реле            |     LOW       ||     HIGH      |\n*/\n\n#include \"Variables.h\"            // Подключаем вкладку с переменными\n\n// Подключаем библиотеку для работы с AVR\n#include \"Sibeng24RegulatorEEPROM_AVR.h\"\n\n//Конструктор класса\nSibeng24RegulatorEEPROM_AVR R;    // Создаем регуляторов (экземпляр класса)\n\n\n#include \"Timers.h\"               // Подключаем вкладку с функцией таймера\n#include \"Sensor.h\"               // Подключаем вкладку с сенсором\n\n\n\n#line 34 \"C:\\\\Users\\\\36045\\\\YandexDisk\\\\[1] Видеоканал\\\\[0] Урок ESP8266\\\\#092 Универсальный Регулятор Температуры (ESP8266 + Blynk)\\\\Sibeng24Regulator - 2021.03.09\\\\examples\\\\Arduino\\\\ArduinoNano_Regulator_EEPROM_Single\\\\ArduinoNano_Regulator_EEPROM_Single.ino\"\nvoid setup();\n#line 63 \"C:\\\\Users\\\\36045\\\\YandexDisk\\\\[1] Видеоканал\\\\[0] Урок ESP8266\\\\#092 Универсальный Регулятор Температуры (ESP8266 + Blynk)\\\\Sibeng24Regulator - 2021.03.09\\\\examples\\\\Arduino\\\\ArduinoNano_Regulator_EEPROM_Single\\\\ArduinoNano_Regulator_EEPROM_Single.ino\"\nvoid loop();\n#line 34 \"C:\\\\Users\\\\36045\\\\YandexDisk\\\\[1] Видеоканал\\\\[0] Урок ESP8266\\\\#092 Универсальный Регулятор Температуры (ESP8266 + Blynk)\\\\Sibeng24Regulator - 2021.03.09\\\\examples\\\\Arduino\\\\ArduinoNano_Regulator_EEPROM_Single\\\\ArduinoNano_Regulator_EEPROM_Single.ino\"\nvoid setup() {\n  pinMode(13, OUTPUT);     // Объявляем GPIO как выход\n  pinMode(PIN_Relay, OUTPUT);     // Объявляем GPIO как выход\n\n  //R.setAllFactorySettings();\n  Serial.begin(9600);\n//  while (!Serial) {\n//    ; // wait for serial port to connect. Needed for native USB port only\n//  }\n  Serial.println(\"Done\");\n  R.printSet();  // Выводит в Serial все настройки регулятора\n  R.printAddr(); // Выводит таблицу Адресов\n\n\n  // Настроим Регулятор(ы) (Достаточно один раз записать настройки, а после можно закоментировать)\n  // Ведь настройки будут храниться в EEPROM\n  /*\n    R.setType(HEATER);    // Выбираем тип регулятора(HEATER, COOLER)\n    R.setRLL(HIGH);       // Выбираем тип выходного сигнала Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)\n    R.setErrorState(LOW); // Безопасное состояние логики реле (bool)\n\n    R.setDelta(2.1);      // Устанавливаем Дельта (Гистерезис)\n    R.setTempSet(20.5);   // Устанавливаем Уставку температуры\n    R.setAuto();          // Выбираем (Автоматический Режим)\n  */\n\n  delay(5000); // Задержка просто так :-)\n}\n\nvoid loop() {\n  ms = millis();  // Записываем в ms количество секунд с начала работы МК\n\n  // Действие происходит по таймеру\n  if (Timer(msR, TIMEOUT_R)) {\n    digitalWrite(13, !digitalRead(13));\n    Serial.println();\n    Serial.print(F(\"Regulator: \"));       Serial.print(R.getId());          // Выводим ID Регулятора\n    float temp = loopSensor();                                              // Опрашиваем датчик температуры\n    Serial.print(F(\"  Temp Set: \"));      Serial.print(R.getTempSet());     // Выводим Уставку\n    Serial.print(F(\" / Temp Sensor: \"));  Serial.print(temp);               // Выводим Текущую температуру\n\n    R.setTempIn(temp);                          // Получаем Температуру от датчика температуры\n\n    digitalWrite(PIN_Relay, R.OutRelay());      // Производит вычисления и выдает результат на Реле\n    // Выдаем управлящий сигнал на Реле\n\n    Serial.print(F(\" ==\u003e OutRelay: \"));         // Выводи сотояние выхода регулятора подключенного к Реле\n    if (R.OutRelay())    Serial.print(\"ON\");\n    else                Serial.print(\"OFF\");\n\n    // Выводим состояние Логики регулятора\n    // Оно может отличаться от Out() так как Out() зависит от уровня логики (HIGH/LOW)\n    // а OutState() выдает именно состояние логики\n    Serial.print(F(\" / OutState Logic: \"));\n    if (R.OutState())    Serial.print(\"ON\");\n    else                Serial.print(\"OFF\");\n\n    Serial.println();\n  }\n}\n\n"}},"jsonrpc":"2.0"}Content-Length: 225
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"}},"id":1,"jsonrpc":"2.0"}
+<<<
+Content-Length: 111
+
+{"id":0,"jsonrpc":"2.0","method":"window/workDoneProgress/create","params":{"token":"backgroundIndexProgress"}}
+>>>
+Content-Length: 38
+
+{"id":0,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"begin","percentage":0,"title":"indexing"}}}Content-Length: 141
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/1","percentage":0}}}
+>>>
+Content-Length: 3898
+
+{"method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/Help.h","languageId":"cpp","version":1,"text":"#if defined(USE_HELPMY)\r\n// Set \"Сетеры\"\r\n  R.setAuto();      // Выбираем (Автоматический Режим)\r\n  \r\n  R.setManual();    // Выбираем (Ручной Режим)(Автоматически Состояние на выходи станет Равным Безопасному состояние реле)\r\n  R.setManualON();  // Выбираем (Ручной Режим)(Состояние на выходи станет HIGH)\r\n  R.setManualOFF(); // Выбираем (Ручной Режим)(Cостояние на выходи станет LOW)\r\n  \r\n  R.setError();         // Выбираем (Ручной Ошибка) По датчику\r\n  R.setErrorState(LOW); // Безопасное состояние логики реле (bool)\r\n  \r\n  R.setType(HEATER);    // Выбираем тип регулятора(HEATER, COOLER)\r\n  R.setRLL(HIGH);       // Выбираем тип выходного сигнала Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)\r\n  \r\n  R.setDelta(0.5);      // Устанавливаем Дельта (Гистерезис)\r\n  R.setTempSet(20);     // Устанавливаем Уставку температуры\r\n  R.setTempIn(20);      // Устанавливаем Температура от датчика температуры\r\n\r\n  R.setFactorySettings();    // Сброс настроек в заводские\r\n  R.setAllFactorySettings(); // Сбросить настройки всех Экземпляров класса после перезагрузки устройства\r\n\r\n// Get \"Гетеры\"\r\n  R.Alarm();         // (bool) Возвращает Сигнал Аварии (от датчика)\r\n  R.getModeState();  // (uint8_t) Возвращает режим регулятора состояние (Автоматический/Ручной/Ошибка)(AUTOMODE, MANUALMODE, ERRORMODE)\r\n  \r\n  R.getType();  // (uint8_t) Возвращает тип регулятора(HEATER, COOLER)\r\n  R.getRLL();   // (bool) Возвращает тип выходного сигнала Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)\r\n  \r\n  R.getDelta();    // (float) Возвращает Дельта (Гистерезис)\r\n  R.getTempSet();  // (float) Возвращает Уставку температуры\r\n  R.getTempIn();   // (float) Возвращает Температуру от датчика температуры\r\n\r\n  R.getId();     // (uint8_t) ID класса (порядковый номер регулятора)\r\n  R.getCount();  // (uint8_t) Счетчик для ID класса (порядковый номер регулятора)\r\n      \r\n  R.printSet();       // Выводит в Serial все настройки регулятора\r\n  R.printAddr();      // Выводит таблицу Адресов\r\n  R.getEEPROMaddr();  // (uint16_t) Возвращает следующий не занятый адрес в EEPROM\r\n  \r\n  R.OutRelay();            // (bool) Производит вычисления и выдает результат на Реле\r\n  R.OutRelay(17.8);        // (bool) Производит вычисления и выдает результат на Реле\r\n  R.OutState();       // (bool) Производит вычисления и выдает результат Логики\r\n  R.OutState(20.8);   // (bool) Производит вычисления и выдает результат Логики\r\n\r\n#endif USE_HELPMY\r\n"}},"jsonrpc":"2.0"}Content-Length: 851
+
+{"method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/Sensor.h","languageId":"cpp","version":1,"text":"\r\n#define MAX_TEMP 30 // Максимальная температура\r\n#define MIN_TEMP 10 // Минимальная температура\r\n\r\n// Фейковая Функция опроса датчика\r\nfloat loopSensor() {\r\n  static float Temp = MIN_TEMP;\r\n  static bool Direction = true;\r\n\r\n  if (Direction)  {\r\n    Temp += (float)random(50, 150) / 100;\r\n    if (Temp \u003e MAX_TEMP) {\r\n      Direction = false;\r\n    }\r\n  }\r\n  else            {\r\n    Temp -= (float)random(50, 150) / 100;\r\n    if (Temp \u003c MIN_TEMP) {\r\n      Direction = true;\r\n    }\r\n  }\r\n  return Temp;\r\n}\r\n"}},"jsonrpc":"2.0"}Content-Length: 1006
+
+{"method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/Timers.h","languageId":"cpp","version":1,"text":"// Функция таймера на millis()\r\n// Взозвращает true или false\r\n// \u0026msF вот занчек \u0026 перед переменной означает, что все действия внутри функции будут записанны в переменную которую мы сюда подставим\r\n// это называется ссылка\r\n\r\nbool Timer(uint32_t \u0026msF, uint32_t timeOut, bool refresh_ms = true) {\r\n  if ((int32_t)(ms - msF) \u003e= timeOut) {\r\n    if (refresh_ms) {\r\n      msF = ms; //Если refresh_ms=true (значение по умолчанию), то обновим время в переменной \u0026msF\r\n    }\r\n    return true;\r\n  }\r\n  else {\r\n    return false;\r\n  }\r\n}\r\n"}},"jsonrpc":"2.0"}Content-Length: 911
+
+{"method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/Variables.h","languageId":"cpp","version":1,"text":"\r\n\r\n///////////////////////////////\r\n// База PIN-ов\r\n\r\nconst uint8_t PIN_Relay = 5;\r\n\r\n// Переменные для таймера на millis();\r\nuint32_t ms;            // Хранит время с начала работы МК\r\n\r\n// Хранят время с последнего события\r\nuint32_t msR;           // Служит для опроса датчика температуры с заданным интевалом\r\n\r\nconst uint32_t TIMEOUT_R = 1000;  // Частота опроса датчика температуры (ставим const если не собираемся менять это значение в скетче)\r\n"}},"jsonrpc":"2.0"}Content-Length: 324
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"range":{"start":{"line":2,"character":0},"end":{"line":2,"character":0}},"context":{"diagnostics":[]}},"id":2,"jsonrpc":"2.0"}
+<<<
+Content-Length: 197
+
+{"jsonrpc":"2.0","method":"textDocument/publishDiagnostics","params":{"diagnostics":[],"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/Help.h","version":1}}Content-Length: 898
+
+{"jsonrpc":"2.0","method":"textDocument/publishDiagnostics","params":{"diagnostics":[{"code":"unknown_typename","message":"Unknown type name 'uint8_t'","range":{"end":{"character":13,"line":5},"start":{"character":6,"line":5}},"severity":1,"source":"clang"},{"code":"unknown_typename","message":"Unknown type name 'uint32_t'","range":{"end":{"character":8,"line":8},"start":{"character":0,"line":8}},"severity":1,"source":"clang"},{"code":"unknown_typename","message":"Unknown type name 'uint32_t'","range":{"end":{"character":8,"line":11},"start":{"character":0,"line":11}},"severity":1,"source":"clang"},{"code":"unknown_typename","message":"Unknown type name 'uint32_t'","range":{"end":{"character":14,"line":13},"start":{"character":6,"line":13}},"severity":1,"source":"clang"}],"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/Variables.h","version":1}}Content-Length: 574
+
+{"jsonrpc":"2.0","method":"textDocument/publishDiagnostics","params":{"diagnostics":[{"code":"undeclared_var_use","message":"Use of undeclared identifier 'random'","range":{"end":{"character":25,"line":10},"start":{"character":19,"line":10}},"severity":1,"source":"clang"},{"code":"undeclared_var_use","message":"Use of undeclared identifier 'random'","range":{"end":{"character":25,"line":16},"start":{"character":19,"line":16}},"severity":1,"source":"clang"}],"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/Sensor.h","version":1}}Content-Length: 1098
+
+{"jsonrpc":"2.0","method":"textDocument/publishDiagnostics","params":{"diagnostics":[{"code":"unknown_typename","message":"Unknown type name 'uint32_t'","range":{"end":{"character":19,"line":5},"start":{"character":11,"line":5}},"severity":1,"source":"clang"},{"code":"unknown_typename","message":"Unknown type name 'uint32_t'","range":{"end":{"character":34,"line":5},"start":{"character":26,"line":5}},"severity":1,"source":"clang"},{"code":"undeclared_var_use","message":"Use of undeclared identifier 'int32_t'","range":{"end":{"character":14,"line":6},"start":{"character":7,"line":6}},"severity":1,"source":"clang"},{"code":"undeclared_var_use","message":"Use of undeclared identifier 'ms'","range":{"end":{"character":18,"line":6},"start":{"character":16,"line":6}},"severity":1,"source":"clang"},{"code":"undeclared_var_use","message":"Use of undeclared identifier 'ms'","range":{"end":{"character":14,"line":8},"start":{"character":12,"line":8}},"severity":1,"source":"clang"}],"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/Timers.h","version":1}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/28","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/28","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/28","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/28","percentage":0}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/28","percentage":3.5714285714285716}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/28","percentage":3.5714285714285716}}}Content-Length: 234
+
+{"jsonrpc":"2.0","method":"textDocument/publishDiagnostics","params":{"diagnostics":[],"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp","version":1}}Content-Length: 976
+
+{"id":1,"jsonrpc":"2.0","result":[{"kind":13,"name":"R","range":{"end":{"character":29,"line":27},"start":{"character":0,"line":27}},"selectionRange":{"end":{"character":29,"line":27},"start":{"character":28,"line":27}}},{"kind":12,"name":"setup","range":{"end":{"character":12,"line":36},"start":{"character":0,"line":36}},"selectionRange":{"end":{"character":10,"line":36},"start":{"character":5,"line":36}}},{"kind":12,"name":"loop","range":{"end":{"character":11,"line":38},"start":{"character":0,"line":38}},"selectionRange":{"end":{"character":9,"line":38},"start":{"character":5,"line":38}}},{"kind":12,"name":"setup","range":{"end":{"character":1,"line":67},"start":{"character":0,"line":40}},"selectionRange":{"end":{"character":10,"line":40},"start":{"character":5,"line":40}}},{"kind":12,"name":"loop","range":{"end":{"character":1,"line":99},"start":{"character":0,"line":69}},"selectionRange":{"end":{"character":9,"line":69},"start":{"character":5,"line":69}}}]}Content-Length: 36
+
+{"id":2,"jsonrpc":"2.0","result":[]}
+>>>
+Content-Length: 287
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/Help.h"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}},"id":3,"jsonrpc":"2.0"}
+<<<
+Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"2/28","percentage":7.1428571428571432}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"2/28","percentage":7.1428571428571432}}}Content-Length: 36
+
+{"id":3,"jsonrpc":"2.0","result":[]}
+>>>
+Content-Length: 289
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/Timers.h"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}},"id":4,"jsonrpc":"2.0"}
+<<<
+Content-Length: 36
+
+{"id":4,"jsonrpc":"2.0","result":[]}
+>>>
+Content-Length: 253
+
+{"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"position":{"line":3,"character":42}},"id":5,"jsonrpc":"2.0"}
+<<<
+Content-Length: 38
+
+{"id":5,"jsonrpc":"2.0","result":null}
+>>>
+Content-Length: 62
+
+{"method":"$/cancelRequest","params":{"id":4},"jsonrpc":"2.0"}Content-Length: 289
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/Timers.h"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}},"id":6,"jsonrpc":"2.0"}
+<<<
+Content-Length: 36
+
+{"id":6,"jsonrpc":"2.0","result":[]}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"3/28","percentage":10.714285714285714}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"3/28","percentage":10.714285714285714}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"4/28","percentage":14.285714285714286}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"4/28","percentage":14.285714285714286}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"5/28","percentage":17.857142857142858}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"5/28","percentage":17.857142857142858}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"6/28","percentage":21.428571428571427}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"6/28","percentage":21.428571428571427}}}Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"7/28","percentage":25}}}Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"7/28","percentage":25}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"8/28","percentage":28.571428571428573}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"8/28","percentage":28.571428571428573}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"9/28","percentage":32.142857142857146}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"9/28","percentage":32.142857142857146}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"10/28","percentage":35.714285714285715}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"10/28","percentage":35.714285714285715}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"11/28","percentage":39.285714285714285}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"11/28","percentage":39.285714285714285}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"12/28","percentage":42.857142857142854}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"12/28","percentage":42.857142857142854}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"13/28","percentage":46.428571428571431}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"13/28","percentage":46.428571428571431}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"14/28","percentage":50}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"14/28","percentage":50}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"15/28","percentage":53.571428571428569}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"15/28","percentage":53.571428571428569}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"16/28","percentage":57.142857142857146}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"16/28","percentage":57.142857142857146}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"17/28","percentage":60.714285714285715}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"17/28","percentage":60.714285714285715}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"18/28","percentage":64.285714285714292}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"18/28","percentage":64.285714285714292}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"19/28","percentage":67.857142857142861}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"19/28","percentage":67.857142857142861}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"20/28","percentage":71.428571428571431}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"20/28","percentage":71.428571428571431}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"21/28","percentage":75}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"21/28","percentage":75}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"22/28","percentage":78.571428571428569}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"22/28","percentage":78.571428571428569}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"23/28","percentage":82.142857142857139}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"23/28","percentage":82.142857142857139}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"24/28","percentage":85.714285714285708}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"24/28","percentage":85.714285714285708}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"25/28","percentage":89.285714285714292}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"26/28","percentage":92.857142857142861}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"27/28","percentage":96.428571428571431}}}Content-Length: 107
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"end"}}}
+>>>
+Content-Length: 254
+
+{"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"position":{"line":61,"character":47}},"id":7,"jsonrpc":"2.0"}
+<<<
+Content-Length: 38
+
+{"id":7,"jsonrpc":"2.0","result":null}
+>>>
+Content-Length: 254
+
+{"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"position":{"line":24,"character":21}},"id":8,"jsonrpc":"2.0"}
+<<<
+Content-Length: 38
+
+{"id":8,"jsonrpc":"2.0","result":null}
+>>>
+Content-Length: 254
+
+{"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"position":{"line":24,"character":10}},"id":9,"jsonrpc":"2.0"}
+<<<
+Content-Length: 38
+
+{"id":9,"jsonrpc":"2.0","result":null}
+>>>
+Content-Length: 328
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"range":{"start":{"line":24,"character":9},"end":{"line":24,"character":26}},"context":{"diagnostics":[]}},"id":10,"jsonrpc":"2.0"}
+<<<
+Content-Length: 37
+
+{"id":10,"jsonrpc":"2.0","result":[]}
+>>>
+Content-Length: 328
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"range":{"start":{"line":24,"character":9},"end":{"line":24,"character":27}},"context":{"diagnostics":[]}},"id":11,"jsonrpc":"2.0"}
+<<<
+Content-Length: 37
+
+{"id":11,"jsonrpc":"2.0","result":[]}
+>>>
+Content-Length: 255
+
+{"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"position":{"line":24,"character":26}},"id":12,"jsonrpc":"2.0"}
+<<<
+Content-Length: 39
+
+{"id":12,"jsonrpc":"2.0","result":null}
+>>>
+Content-Length: 254
+
+{"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"position":{"line":24,"character":7}},"id":13,"jsonrpc":"2.0"}
+<<<
+Content-Length: 39
+
+{"id":13,"jsonrpc":"2.0","result":null}
+>>>
+Content-Length: 254
+
+{"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"position":{"line":24,"character":9}},"id":14,"jsonrpc":"2.0"}
+<<<
+Content-Length: 39
+
+{"id":14,"jsonrpc":"2.0","result":null}
+>>>
+Content-Length: 254
+
+{"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"position":{"line":24,"character":9}},"id":15,"jsonrpc":"2.0"}
+<<<
+Content-Length: 39
+
+{"id":15,"jsonrpc":"2.0","result":null}
+>>>
+Content-Length: 267
+
+{"method":"textDocument/documentHighlight","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"position":{"line":24,"character":10}},"id":16,"jsonrpc":"2.0"}
+<<<
+Content-Length: 37
+
+{"id":16,"jsonrpc":"2.0","result":[]}
+>>>
+Content-Length: 329
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"range":{"start":{"line":24,"character":10},"end":{"line":24,"character":33}},"context":{"diagnostics":[]}},"id":17,"jsonrpc":"2.0"}
+<<<
+Content-Length: 37
+
+{"id":17,"jsonrpc":"2.0","result":[]}
+>>>
+Content-Length: 329
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"range":{"start":{"line":24,"character":10},"end":{"line":24,"character":27}},"context":{"diagnostics":[]}},"id":18,"jsonrpc":"2.0"}
+<<<
+Content-Length: 37
+
+{"id":18,"jsonrpc":"2.0","result":[]}
+>>>
+Content-Length: 255
+
+{"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"position":{"line":24,"character":26}},"id":19,"jsonrpc":"2.0"}
+<<<
+Content-Length: 39
+
+{"id":19,"jsonrpc":"2.0","result":null}
+>>>
+Content-Length: 63
+
+{"method":"$/cancelRequest","params":{"id":18},"jsonrpc":"2.0"}Content-Length: 255
+
+{"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"position":{"line":24,"character":27}},"id":20,"jsonrpc":"2.0"}
+<<<
+Content-Length: 39
+
+{"id":20,"jsonrpc":"2.0","result":null}
+>>>
+Content-Length: 260
+
+{"method":"textDocument/definition","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"position":{"line":24,"character":27}},"id":21,"jsonrpc":"2.0"}
+<<<
+Content-Length: 219
+
+{"id":21,"jsonrpc":"2.0","result":[{"range":{"end":{"character":0,"line":0},"start":{"character":0,"line":0}},"uri":"file:///C:/Users/36045/Documents/Arduino/libraries/Sibeng24Regulator/Sibeng24RegulatorEEPROM_AVR.h"}]}
+>>>
+Content-Length: 2494
+
+{"method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///c%3A/Users/36045/Documents/Arduino/libraries/Sibeng24Regulator/Sibeng24RegulatorEEPROM_AVR.h","languageId":"cpp","version":1,"text":"#ifndef Sibeng24RegulatorEEPROM_AVR_h\r\n#define Sibeng24RegulatorEEPROM_AVR_h\r\n\r\n#include \u003cSibeng24RegulatorEEPROM.h\u003e\r\n\r\n////////////////////////////////////////////////\r\n// Работа с Sibeng24RegulatorEEPROM_AVR\r\n\r\nclass Sibeng24RegulatorEEPROM_AVR : public Sibeng24RegulatorEEPROM {\r\n\r\n \r\n  protected:\r\n\r\n    // Сохраняем данные в EEPROM\r\n    void SaveSettigsEEPROM(uint16_t addr, uint8_t \u0026value) { \r\n        EEPROM_writeAnything(addr, value);\r\n    }\r\n    // Сохраняем данные в EEPROM\r\n    void SaveSettigsEEPROM(uint16_t addr, float \u0026value) {\r\n        EEPROM.put(addr,  value);\r\n    }\r\n    // Сохраняем данные в EEPROM\r\n    void SaveSettigsEEPROM(uint16_t addr, bool \u0026value) {\r\n        EEPROM_writeAnything(addr, value);\r\n    }\r\n     // Проверяем что записанно в нулевой ячеке EEPROM\r\n     // Проверяем инициализированна ли память\r\n    bool checkEEPROM(){\r\n      uint16_t check;\r\n      \r\n      EEPROM_readAnything(0, check);\r\n      \r\n      if(EEPROMcheck == check){\r\n        return true;\r\n      }\r\n      else{\r\n        if(count == _id){\r\n          EEPROM_writeAnything(0, EEPROMcheck);\r\n        }\r\n        return false;\r\n       }\r\n    }\r\n\r\npublic:\r\n\r\n    Sibeng24RegulatorEEPROM_AVR() {\r\n      initEEPROM();\r\n    }\r\nprotected:     \r\n    // Читаем все настройки из EEPROM\r\n    void ReadAllSettingsEEPROM() {\r\n      EEPROM_readAnything(_a[a_RegulatorType], _RegulatorType);\r\n      EEPROM_readAnything(_a[a_Mode], _Mode);\r\n      EEPROM_readAnything(_a[a_ErrState], _ErrState);\r\n      EEPROM_readAnything(_a[a_RLL], _RLL);\r\n\r\n      EEPROM.get(_a[a_TempSet],  _TempSet);\r\n      EEPROM.get(_a[a_Delta],   _Delta);\r\n    }\r\npublic:\r\n    // Сбросить настройки всех Экземпляров класса после перезагрузки устройства\r\n    void setAllFactorySettings(){\r\n      EEPROMcheck++;\r\n      EEPROM_writeAnything(0, EEPROMcheck);\r\n    }\r\n    \r\n}; // Sibeng24RegulatorEEPROM_AVR\r\n\r\n#endif Sibeng24RegulatorEEPROM_AVR_h\r\n"}},"jsonrpc":"2.0"}Content-Length: 187
+
+{"method":"textDocument/didClose","params":{"textDocument":{"uri":"file:///c%3A/Users/36045/Documents/Arduino/libraries/Sibeng24Regulator/Sibeng24RegulatorEEPROM_AVR.h"}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 195
+
+{"jsonrpc":"2.0","method":"textDocument/publishDiagnostics","params":{"diagnostics":[],"uri":"file:///c:/Users/36045/Documents/Arduino/libraries/Sibeng24Regulator/Sibeng24RegulatorEEPROM_AVR.h"}}
+>>>
+Content-Length: 260
+
+{"method":"textDocument/definition","params":{"textDocument":{"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/ArduinoNano_Regulator_EEPROM_Single.ino.cpp"},"position":{"line":30,"character":65}},"id":22,"jsonrpc":"2.0"}
+<<<
+Content-Length: 211
+
+{"id":22,"jsonrpc":"2.0","result":[{"range":{"end":{"character":0,"line":0},"start":{"character":0,"line":0}},"uri":"file:///C:/Users/36045/AppData/Local/Temp/arduino-language-server644108963/sketch/Timers.h"}]}
+>>>
+Content-Length: 59
+
+{"method":"shutdown","params":null,"id":23,"jsonrpc":"2.0"}
+<<<
+Content-Length: 39
+
+{"id":23,"jsonrpc":"2.0","result":null}
+>>>
+Content-Length: 47
+
+{"method":"exit","params":null,"jsonrpc":"2.0"}<<< Read Error: EOF

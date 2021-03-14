@@ -1,3 +1,5 @@
+#include <Arduino.h>  // for type definitions
+
 #ifndef Sibeng24Regulator_h
 #define Sibeng24Regulator_h
 

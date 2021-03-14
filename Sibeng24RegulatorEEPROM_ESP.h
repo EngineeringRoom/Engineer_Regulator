@@ -12,19 +12,19 @@ class Sibeng24RegulatorEEPROM_ESP : public Sibeng24RegulatorEEPROM {
   protected:
 
     // Сохраняем данные в EEPROM
-    void SaveSettigsEEPROM(uint16_t addr, uint8_t &value) {
+    void SaveSettigsEEPROM(uint16_t addr, uint8_t &value) override {
       EEPROM.begin(EEPROMaddr); 
         EEPROM_writeAnything(addr, value);
       EEPROM.end();
     }
     // Сохраняем данные в EEPROM
-    void SaveSettigsEEPROM(uint16_t addr, float &value) {
+    void SaveSettigsEEPROM(uint16_t addr, float &value) override  {
       EEPROM.begin(EEPROMaddr);
         EEPROM.put(addr,  value);
       EEPROM.end();
     }
     // Сохраняем данные в EEPROM
-    void SaveSettigsEEPROM(uint16_t addr, bool &value) {
+    void SaveSettigsEEPROM(uint16_t addr, bool &value) override  {
       EEPROM.begin(EEPROMaddr);
         EEPROM_writeAnything(addr, value);
       EEPROM.end();
@@ -32,7 +32,7 @@ class Sibeng24RegulatorEEPROM_ESP : public Sibeng24RegulatorEEPROM {
 
      // Проверяем что записанно в нулевой ячеке EEPROM
      // Проверяем инициализированна ли память
-    bool checkEEPROM(){
+    bool checkEEPROM() override {
       uint16_t check;
       EEPROM.begin(sizeof(EEPROMcheck));
       EEPROM_readAnything(0, check);
@@ -70,7 +70,7 @@ protected:
     }
 public:
     // Сбросить настройки всех Экземпляров класса после перезагрузки устройства
-    void setAllFactorySettings(){
+    void setAllFactorySettings()override {
       EEPROMcheck++;
       EEPROM.begin(EEPROMaddr);
       EEPROM_writeAnything(0, EEPROMcheck);

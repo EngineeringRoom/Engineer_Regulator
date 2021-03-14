@@ -38,11 +38,11 @@ class Sibeng24RegulatorEEPROM : public Sibeng24Regulator {
     };
 
     // Сохраняем данные в EEPROM
-    virtual void SaveSettigsEEPROM(uint16_t addr, uint8_t &value);
+    virtual void SaveSettigsEEPROM(uint16_t addr, uint8_t &value)=0;
     // Сохраняем данные в EEPROM
-    virtual void SaveSettigsEEPROM(uint16_t addr, float &value);
+    virtual void SaveSettigsEEPROM(uint16_t addr, float &value)=0;
     // Сохраняем данные в EEPROM
-    virtual void SaveSettigsEEPROM(uint16_t addr, bool &value);
+    virtual void SaveSettigsEEPROM(uint16_t addr, bool &value)=0;
 
 
     void SaveAllSettingsEEPROM() {
@@ -85,11 +85,10 @@ class Sibeng24RegulatorEEPROM : public Sibeng24Regulator {
       _a[a_TempSet] = EEPROMaddr;         EEPROMaddr += sizeof(_TempSet);
       _a[a_Delta] = EEPROMaddr;           EEPROMaddr += sizeof(_Delta);
 
-      printAddr();
     }
 
     // Читаем все настройки из EEPROM
-    virtual void ReadAllSettingsEEPROM();
+    virtual void ReadAllSettingsEEPROM()=0;
 
   public:
     // Сброс настроек в заводские
@@ -112,7 +111,7 @@ class Sibeng24RegulatorEEPROM : public Sibeng24Regulator {
   protected:
     // Проверяем что записанно в нулевой ячеке EEPROM
     // Проверяем инициализированна ли память
-    virtual bool checkEEPROM();
+    virtual bool checkEEPROM()=0;
 
     // Инициализируем EEPROM
     void initEEPROM(){
