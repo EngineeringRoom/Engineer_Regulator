@@ -6,10 +6,26 @@
       GitHAB: https://github.com/EngineeringRoom
       Донат можно кинуть тут Мой бусти: https://boosty.to/sibeng24
       Я буду очень вам признателен.
+
+  The temperature controller works with AVR and ESP.
+  Advantages
+  - Controller type (HEATER, COOLER)
+  - Controller mode (Automatic/Manual/Error)(AUTOMODE, MANUALMODE, ERRORMODE)
+  - All settings are stored in the EEPROM
+  - You can configure the output of the Controller to work with forward and reverse logic RLL (Relay Logic Level)
+  - Many examples. There are examples of working with Blynk.
+  
+  Регулятор температуры работает с AVR и ESP.
+  Преимущества
+  - Тип регулятора(HEATER, COOLER)
+  - Режим регулятора (Автоматический/Ручной/Ошибка)(AUTOMODE, MANUALMODE, ERRORMODE)
+  - Все настройки храниться в EEPROM
+  - Можно настроит выход Регулятора для работы с прямой и обратной логикой RLL(Relay Logic Level)
+  - Много примеров. Есть примеры работы Blynk.
   
   Это библиотека для реализует объект Регулятор температуры. С гистирезисом.
-  подключите в скетче библиотеку <Sibeng24Regulator.h>
-  Объявите класс Sibeng24Regulator
+  подключите в скетче библиотеку <Regulator.h>
+  Объявите класс Regulator
   Работает и с AVR и с ESP
   Это может быть нагреватель или охладитель.
   Метод OutRelay() может работать с прямой и обратной логикой
@@ -18,11 +34,11 @@
   То есть пока не настроите и не переведете в Автоматический режим. Регулятор неработает.
 
   Может хранить настройки в EEPROM из коробки:
-  Для AVR <Sibeng24RegulatorEEPROM_AVR.h>
-  Объявите класс Sibeng24RegulatorEEPROM_AVR
+  Для AVR <RegulatorEEPROM_AVR.h>
+  Объявите класс RegulatorEEPROM_AVR
 
-  Для ESP <Sibeng24RegulatorEEPROM_ESP.h>
-  Объявите класс Sibeng24RegulatorEEPROM_ESP
+  Для ESP <RegulatorEEPROM_ESP.h>
+  Объявите класс RegulatorEEPROM_ESP
 
   Все сделанно что бы просто было пользоваться этим классом и заморачиваться только с логикой работы своей программы,
   а не с тем как должен работать регулятор.

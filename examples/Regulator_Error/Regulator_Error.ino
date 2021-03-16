@@ -32,10 +32,10 @@
 #include "Variables.h"            // Подключаем вкладку с переменными
 
 // Подключаем библиотеку для работы с AVR
-#include "Sibeng24RegulatorEEPROM_AVR.h"
+#include "RegulatorEEPROM_AVR.h"
 
 //Конструктор класса
-Sibeng24Regulator R;    // Создаем регуляторов (экземпляр класса)
+Regulator R;    // Создаем регуляторов (экземпляр класса)
 
 
 #include "Timers.h"               // Подключаем вкладку с функцией таймера

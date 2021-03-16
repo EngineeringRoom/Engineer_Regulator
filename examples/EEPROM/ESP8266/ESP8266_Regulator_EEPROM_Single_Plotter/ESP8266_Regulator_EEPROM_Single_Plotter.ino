@@ -31,10 +31,10 @@
 #include "Variables.h"            // Подключаем вкладку с переменными
 
 // Подключаем библиотеку для работы с ESP
-#include "Sibeng24RegulatorEEPROM_ESP.h"
+#include "RegulatorEEPROM_ESP.h"
 
 //Конструктор класса
-Sibeng24RegulatorEEPROM_ESP R;    // Создаем регулятор (экземпляр класса)
+RegulatorEEPROM_ESP R;    // Создаем регулятор (экземпляр класса)
 
 
 #include "Timers.h"               // Подключаем вкладку с функцией таймера

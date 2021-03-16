@@ -1,5 +1,5 @@
 #######################################
-# Syntax Coloring Map for Sibeng24Regulator
+# Syntax Coloring Map for Regulator
 #######################################
 
 
@@ -7,7 +7,7 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-Sibeng24Regulator	KEYWORD1
+Regulator	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -58,10 +58,10 @@ setAllFactorySettings	KEYWORD2
 # Instances (KEYWORD1)
 #######################################
 
-Sibeng24Regulator	KEYWORD1
-Sibeng24RegulatorEEPROM	KEYWORD1
-Sibeng24RegulatorEEPROM_AVR	KEYWORD1	
-Sibeng24RegulatorEEPROM_ESP	KEYWORD1	
+Regulator	KEYWORD1
+RegulatorEEPROM	KEYWORD1
+RegulatorEEPROM_AVR	KEYWORD1	
+RegulatorEEPROM_ESP	KEYWORD1	
 
 #######################################
 # Constants (LITERAL1)

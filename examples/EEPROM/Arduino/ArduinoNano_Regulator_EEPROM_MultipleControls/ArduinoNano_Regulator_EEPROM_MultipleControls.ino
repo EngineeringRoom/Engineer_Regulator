@@ -31,10 +31,10 @@
 #include "Variables.h"            // Подключаем вкладку с переменными
 
 // Подключаем библиотеку для работы с AVR
-#include "Sibeng24RegulatorEEPROM_AVR.h"
+#include "RegulatorEEPROM_AVR.h"
 
 //Конструктор класса
-Sibeng24RegulatorEEPROM_AVR R[NumberOfRegulators]; // Создаем массив из регуляторов
+RegulatorEEPROM_AVR R[NumberOfRegulators]; // Создаем массив из регуляторов
 
 
 #include "Timers.h"               // Подключаем вкладку с функцией таймера
@@ -49,7 +49,7 @@ void setup() {
 
   Serial.begin(9600);             
 
-  for (int i=0; i<Sibeng24RegulatorEEPROM_AVR::getCount(); i++){
+  for (int i=0; i<RegulatorEEPROM_AVR::getCount(); i++){
     R[i].printSet();  // Выводит в Serial все настройки регулятора
     R[i].printAddr(); // Выводит таблицу Адресов
   }
@@ -91,8 +91,8 @@ void loop() {
   // Действие происходит по таймеру
   if (Timer(msR, TIMEOUT_R)) {
     // Проходимся цыклом for
-    // вот это нам возвращает количество регуляторов Sibeng24RegulatorEEPROM_ESP::getCount()
-    for (int i=0; i < Sibeng24RegulatorEEPROM_AVR::getCount(); i++){           
+    // вот это нам возвращает количество регуляторов RegulatorEEPROM_ESP::getCount()
+    for (int i=0; i < RegulatorEEPROM_AVR::getCount(); i++){           
       Serial.println();
       Serial.print(F("Regulator: "));       Serial.print(R[i].getId());       // Выводим ID Регулятора
       float temp = loopSensor();                                              // Опрашиваем датчик температуры
