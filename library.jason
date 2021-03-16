@@ -1,11 +1,11 @@
 {
-  "name": "Sibeng24Regulator",
-  "keywords": "Sibeng24Regulator, Regulator, Sibeng24, hysteresis, heater, cooler, temperature, EEPROM",
-  "description": "Arduino library for temperature controller. Stores settings in EEPROM. Hysteresis",
+  "name": "Regulator",
+  "keywords": "Regulator, Sibeng24, EngineeringRoom, hysteresis, heater, cooler, temperature, EEPROM, Инженерка",
+  "description": "Arduino library for temperature controller. Stores settings in EEPROM. Hysteresis. (AVR and ESP). Blynk examples.",
   "repository":
   {
     "type": "git",
-    "url": "https://github.com/EngineeringRoom/Sibeng24Regulator.git"
+    "url": "https://github.com/EngineeringRoom/Regulator.git"
   },
   "authors": 
   [
