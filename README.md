@@ -5,8 +5,8 @@ email: sib.eng24@gmail.com</br>
 url: https://www.youtube.com/channel/UCih0Gcl9IEdkR8deDJCiodg</br>
 
 Это библиотека для реализует объект Регулятор температуры. С гистирезисом.</br>
-подключите в скетче библиотеку <Sibeng24Regulator.h></br>
-Объявите класс Sibeng24Regulator</br>
+подключите в скетче библиотеку <Engineer_egulator.h></br>
+Объявите класс Regulator</br>
 Работает и с AVR и с ESP</br>
 Это может быть нагреватель или охладитель.</br>
 Метод OutRelay() может работать с прямой и обратной логикой</br>
@@ -15,11 +15,11 @@ url: https://www.youtube.com/channel/UCih0Gcl9IEdkR8deDJCiodg</br>
 То есть пока не настроите и не переведете в Автоматический режим. Регулятор неработает.</br></br>
 
 Может хранить настройки в EEPROM из коробки:</br>
-Для AVR <Sibeng24RegulatorEEPROM_AVR.h></br>
-Объявите класс Sibeng24RegulatorEEPROM_AVR</br></br>
+Для AVR <Engineer_RegulatorEEPROM_AVR.h></br>
+Объявите класс RegulatorEEPROM_AVR</br></br>
 
-Для ESP <Sibeng24RegulatorEEPROM_ESP.h></br>
-Объявите класс Sibeng24RegulatorEEPROM_ESP</br>
+Для ESP <Engineer_RegulatorEEPROM_ESP.h></br>
+Объявите класс RegulatorEEPROM_ESP</br>
 
 Все сделанно что бы просто было пользоваться этим классом и заморачиваться только с логикой работы своей программы,
 а не с тем как должен работать регулятор.
