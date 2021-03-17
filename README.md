@@ -1,50 +1,32 @@
-# Regulator
+# Sibeng24Regulator
 
-Autor: Alexey Obushenkov (Инжинерка - EngineeringRoom)</br>
-      email: sib.eng24@gmail.com</br>
-      YouTube: https://www.youtube.com/channel/UCih0Gcl9IEdkR8deDJCiodg</br>
-      GitHAB: https://github.com/EngineeringRoom</br>
-      Донат можно кинуть тут Мой бусти: https://boosty.to/sibeng24</br>
-      Я буду очень вам признателен.</br>
+Autor: Alexey Obushenkov</br>
+email: sib.eng24@gmail.com</br>
+url: https://www.youtube.com/channel/UCih0Gcl9IEdkR8deDJCiodg</br>
 
-  The temperature controller works with AVR and ESP.</br>
-  Advantages</br>
-  - Controller type (HEATER, COOLER)</br>
-  - Controller mode (Automatic/Manual/Error)(AUTOMODE, MANUALMODE, ERRORMODE)</br>
-  - All settings are stored in the EEPROM</br>
-  - You can configure the output of the Controller to work with forward and reverse logic RLL (Relay Logic Level)</br>
-  - Many examples. There are examples of working with Blynk.</br>
-  
-  Регулятор температуры работает с AVR и ESP.</br>
-  Преимущества</br>
-  - Тип регулятора(HEATER, COOLER)</br>
-  - Режим регулятора (Автоматический/Ручной/Ошибка)(AUTOMODE, MANUALMODE, ERRORMODE)</br>
-  - Все настройки храниться в EEPROM</br>
-  - Можно настроит выход Регулятора для работы с прямой и обратной логикой RLL(Relay Logic Level)</br>
-  - Много примеров. Есть примеры работы Blynk.</br>
-  
-  Это библиотека для реализует объект Регулятор температуры. С гистирезисом.</br>
-  подключите в скетче библиотеку <Regulator.h></br>
-  Объявите класс Regulator</br>
-  Работает и с AVR и с ESP</br>
-  Это может быть нагреватель или охладитель.</br>
-  Метод OutRelay() может работать с прямой и обратной логикой</br>
-  задается это методом setRLL()</br>
-  Имеет три режима: Автоматический. Ручной(по умолчанию). Ошибка.</br>
-  То есть пока не настроите и не переведете в Автоматический режим. Регулятор неработает.</br></br>
+Это библиотека для реализует объект Регулятор температуры. С гистирезисом.</br>
+подключите в скетче библиотеку <Sibeng24Regulator.h></br>
+Объявите класс Sibeng24Regulator</br>
+Работает и с AVR и с ESP</br>
+Это может быть нагреватель или охладитель.</br>
+Метод OutRelay() может работать с прямой и обратной логикой</br>
+задается это методом setRLL()</br>
+Имеет три режима: Автоматический. Ручной(по умолчанию). Ошибка.</br>
+То есть пока не настроите и не переведете в Автоматический режим. Регулятор неработает.</br></br>
 
-  Может хранить настройки в EEPROM из коробки:</br>
-  Для AVR <RegulatorEEPROM_AVR.h></br>
-  Объявите класс RegulatorEEPROM_AVR</br></br>
+Может хранить настройки в EEPROM из коробки:</br>
+Для AVR <Sibeng24RegulatorEEPROM_AVR.h></br>
+Объявите класс Sibeng24RegulatorEEPROM_AVR</br></br>
 
-  Для ESP <RegulatorEEPROM_ESP.h></br>
-  Объявите класс RegulatorEEPROM_ESP</br></br>
+Для ESP <Sibeng24RegulatorEEPROM_ESP.h></br>
+Объявите класс Sibeng24RegulatorEEPROM_ESP</br>
 
-  Все сделанно что бы просто было пользоваться этим классом и заморачиваться только с логикой работы своей программы,
-  а не с тем как должен работать регулятор.</br></br>
+Все сделанно что бы просто было пользоваться этим классом и заморачиваться только с логикой работы своей программы,
+а не с тем как должен работать регулятор.
 
-  Ну и для удобства все методы класса доступные для вас.</br></br>
-  
+Ну и для удобства все методы класса доступные для вас.
+
+
 **// Set "Сетеры"**
 
 **R.setAuto();**      // Устанавливаем (Автоматический Режим)</br>

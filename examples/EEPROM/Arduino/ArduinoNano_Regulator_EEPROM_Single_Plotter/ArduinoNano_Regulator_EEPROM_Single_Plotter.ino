@@ -31,7 +31,7 @@
 #include "Variables.h"            // Подключаем вкладку с переменными
 
 // Подключаем библиотеку для работы с AVR
-#include "RegulatorEEPROM_AVR.h"
+#include "Engineer_RegulatorEEPROM_AVR.h"
 
 //Конструктор класса
 RegulatorEEPROM_AVR R;    // Создаем регулятор (экземпляр класса)

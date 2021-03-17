@@ -5,9 +5,10 @@
       GitHAB: https://github.com/EngineeringRoom
       Донат можно кинуть тут Мой бусти: https://boosty.to/sibeng24
       Я буду очень вам признателен.
-      
+
+    Рассмотрим работу с Error. Вам в Sensor.h      
     Простой скетч для работы с терморегулятором в Автоматическом режиме.
-    Рассмотрим работу с Error.
+    
     Работа с EEPROM в других примерах. Это для тех кто хочет сам организовать
     хранение в EEPROM настроек.
     Скетч работает с любой архитектурой. 
@@ -31,8 +32,8 @@
 
 #include "Variables.h"            // Подключаем вкладку с переменными
 
-// Подключаем библиотеку для работы с AVR
-#include "RegulatorEEPROM_AVR.h"
+// Подключаем библиотеку для работы с AVR или ESP без EEPROM
+#include "Engineer_Regulator.h"
 
 //Конструктор класса
 Regulator R;    // Создаем регуляторов (экземпляр класса)
@@ -60,7 +61,7 @@ void setup() {
 
   R.printSet();  // Выводит в Serial все настройки регулятора
 
-  delay(5000); // Задержка просто так :-)
+  //delay(5000); // Задержка просто так :-)
 }
 
 void loop() {
@@ -69,13 +70,22 @@ void loop() {
   // Действие происходит по таймеру
   if (Timer(msR, TIMEOUT_R)) {
     Serial.println();
+    static int Count=1; Serial.print(Count++); Serial.print("s ");
+     
+    
+  
     Serial.print(F("Regulator: "));       Serial.print(R.getId());          // Выводим ID Регулятора
     float temp = loopSensor();                                              // Опрашиваем датчик температуры
     Serial.print(F("  Temp Set: "));      Serial.print(R.getTempSet());     // Выводим Уставку
     Serial.print(F(" / Temp Sensor: "));  Serial.print(temp);               // Выводим Текущую температуру
 
     R.setTempIn(temp);                          // Получаем Температуру от датчика температуры
-
+ 
+    Serial.print(F(" Mode: "));    // Выводим текущий режим работы
+    if     (R.getModeState() == AUTOMODE)      Serial.print("AUTOMODE");
+    else if(R.getModeState() == MANUALMODE)    Serial.print("MANUALMODE");
+    else if(R.getModeState() == ERRORMODE)     Serial.print("ERRORMODE");
+    
     digitalWrite(PIN_Relay, R.OutRelay());      // Производит вычисления и выдает результат на Реле
     // Выдаем управлящий сигнал на Реле
 

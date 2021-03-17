@@ -35,8 +35,8 @@
 
 #include "Variables.h"            // Подключаем вкладку с переменными
 
-// Подключаем библиотеку для работы с AVR
-#include "RegulatorEEPROM_AVR.h"
+// Подключаем библиотеку для работы с AVR или ESP без EEPROM
+#include "Engineer_Regulator.h"
 
 //Конструктор класса
 Regulator R;    // Создаем регуляторов (экземпляр класса)
@@ -89,7 +89,6 @@ void loop() {
     Serial.print(F("  Temp Set: "));      Serial.print(R.getTempSet());     // Выводим Уставку
     Serial.print(F(" / Temp Sensor: "));  Serial.print(temp);               // Выводим Текущую температуру
     R.setTempIn(temp);                          // Получаем Температуру от датчика температуры
-
 
     Serial.print(F(" Regulator Mode: "));    // Выводим текущий режим работы
     if     (R.getModeState() == AUTOMODE)      Serial.print("AUTOMODE");

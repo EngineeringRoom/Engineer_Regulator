@@ -31,7 +31,7 @@
 #include "Variables.h"            // Подключаем вкладку с переменными
 
 // Подключаем библиотеку для работы с ESP
-#include "RegulatorEEPROM_ESP.h"
+#include "Engineer_RegulatorEEPROM_ESP.h"
 
 //Конструктор класса
 RegulatorEEPROM_ESP R[NumberOfRegulators]; // Создаем массив из регуляторов
