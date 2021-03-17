@@ -1,4 +1,4 @@
-# Sibeng24Regulator
+# Engineer_Regulator.h
 
 Autor: Alexey Obushenkov</br>
 email: sib.eng24@gmail.com</br>
