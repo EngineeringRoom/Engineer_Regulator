@@ -5,7 +5,7 @@ email: sib.eng24@gmail.com</br>
 url: https://www.youtube.com/channel/UCih0Gcl9IEdkR8deDJCiodg</br>
 
 Это библиотека для реализует объект Регулятор температуры. С гистирезисом.</br>
-подключите в скетче библиотеку <Engineer_egulator.h></br>
+подключите в скетче библиотеку <Engineer_Regulator.h></br>
 Объявите класс Regulator</br>
 Работает и с AVR и с ESP</br>
 Это может быть нагреватель или охладитель.</br>
