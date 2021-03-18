@@ -6,6 +6,8 @@
       Донат можно кинуть тут Мой бусти: https://boosty.to/sibeng24
       Я буду очень вам признателен.
 
+    Пример работы с Blynk.
+    
     Рассмотрим работу с Error. Вам в Sensor.h      
     Простой скетч для работы с терморегулятором в Автоматическом режиме.
     
@@ -29,51 +31,69 @@
     OutState() - это выход логики регулятора  |     HIGH      ||     LOW       |
     OutRelay() - это выход на реле            |     LOW       ||     HIGH      |
 */
-/* Закомментируйте это, чтобы отключить BLYNK_LOG и сэкономить место */
-#define BLYNK_PRINT Serial
 
-#include <ESP8266WiFi.h>
-#include <BlynkSimpleEsp8266.h>
 
 #include "Variables.h"            // Подключаем вкладку с переменными
 
-BlynkTimer timer;       // Объявляем класс Таймер
-#include "Connect.h"   // Вкладка с функциями подключения к WiFi и Blynk
-
-// Подключаем библиотеку для работы с AVR или ESP без EEPROM
-#include "Engineer_RegulatorEEPROM_ESP.h"
-
+#include "Engineer_RegulatorEEPROM_ESP.h" // Подключаем библиотеку для работы c ESP c EEPROM
 //Конструктор класса
-Regulator R;    // Создаем регуляторов (экземпляр класса)
-
+RegulatorEEPROM_ESP R[NumberOfRegulators];    // Создаем регуляторов (экземпляр класса)
 
 #include "Timers.h"               // Подключаем вкладку с функцией таймера
 #include "Sensor.h"               // Подключаем вкладку с сенсором
 
+#include "Blynk.h"                // Подключаем вкладку с функциями Blynk
+BlynkTimer timer;                 // Объявляем класс Таймер
+#include "Connect.h"   // Вкладка с функциями подключения к WiFi и Blynk
+
 
 
 void setup() {
-  pinMode(PIN_Relay, OUTPUT);     // Объявляем GPIO как выход
+  for (int i=0; i < NumberOfRegulators; i++){
+    pinMode(PIN_Relay[i], OUTPUT);     // Объявляем GPIO как выход   
+  }
 
   Serial.begin(9600);
 
-  // Настроим Регулятор(ы) 
+  // Настроим Регулятор(ы) (Достаточно один раз записать настройки, а после можно закоментировать)
+  // Ведь настройки будут храниться в EEPROM
+/*
+  R[0].setType(HEATER);    // Выбираем тип регулятора(HEATER, COOLER)
+  R[0].setRLL(HIGH);       // Выбираем тип выходного сигнала Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)
+  R[0].setErrorState(LOW); // Безопасное состояние логики реле (bool)
 
-    R.setType(HEATER);    // Выбираем тип регулятора(HEATER, COOLER). По умолчанию HEATER
-    R.setRLL(HIGH);       // Выбираем тип выходного сигнала Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW). По умолчанию HIGH
-    R.setErrorState(LOW); // Безопасное состояние логики реле (bool). По умолчанию LOW
+  R[0].setDelta(2.1);      // Устанавливаем Дельта (Гистерезис)
+  R[0].setTempSet(20.5);   // Устанавливаем Уставку температуры
+  R[0].setAuto();          // Выбираем (Автоматический Режим)
 
-    R.setDelta(2.1);      // Устанавливаем Дельта (Гистерезис). По умолчанию 0.0
-    R.setTempSet(20.5);   // Устанавливаем Уставку температуры. По умолчанию 0.0
-    R.setAuto();          // Выбираем (Автоматический Режим). По умолчанию MANUALMODE
+  R[1].setType(HEATER);    // Выбираем тип регулятора(HEATER, COOLER)
+  R[1].setRLL(HIGH);       // Выбираем тип выходного сигнала Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)
+  R[1].setErrorState(LOW); // Безопасное состояние логики реле (bool)
 
-  R.printSet();  // Выводит в Serial все настройки регулятора
+  R[1].setDelta(0.5);      // Устанавливаем Дельта (Гистерезис)
+  R[1].setTempSet(25.0);   // Устанавливаем Уставку температуры
+  R[1].setAuto();          // Выбираем (Автоматический Режим)
+
+  R[2].setType(HEATER);    // Выбираем тип регулятора(HEATER, COOLER)
+  R[2].setRLL(HIGH);        // Выбираем тип выходного сигнала Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)
+  R[2].setErrorState(LOW); // Безопасное состояние логики реле (bool)
+
+  R[2].setDelta(1.0);      // Устанавливаем Дельта (Гистерезис)
+  R[2].setTempSet(23.5);   // Устанавливаем Уставку температуры
+  R[2].setAuto();          // Выбираем (Автоматический Режим)  
+*/
+
+  for (int i=0; i<RegulatorEEPROM_ESP::getCount(); i++){
+    R[i].printSet();  // Выводит в Serial все настройки регулятора
+    R[i].printAddr(); // Выводит таблицу Адресов
+  }
 
 // Проверяем есть ли связь с сервером каждые 10 секунд
   IDt_reconnectBlynk = timer.setInterval(10*1000, reconnectBlynk);
  
 // Вызываем функцию подключения к Blynk
   reconnectBlynk();
+  timer.setInterval(1000L, loopBlynk);
 }
 
 void loop() {
@@ -81,41 +101,4 @@ void loop() {
 
 if (Blynk.connected()){ Blynk.run();} 
   timer.run();
-  
-  // Действие происходит по таймеру
-  if (Timer(msR, TIMEOUT_R)) {
-    Serial.println();
-    static int Count=1; Serial.print(Count++); Serial.print("s ");
-     
-    
-  
-    Serial.print(F("Regulator: "));       Serial.print(R.getId());          // Выводим ID Регулятора
-    float temp = loopSensor();                                              // Опрашиваем датчик температуры
-    Serial.print(F("  Temp Set: "));      Serial.print(R.getTempSet());     // Выводим Уставку
-    Serial.print(F(" / Temp Sensor: "));  Serial.print(temp);               // Выводим Текущую температуру
-
-    R.setTempIn(temp);                          // Получаем Температуру от датчика температуры
- 
-    Serial.print(F(" Mode: "));    // Выводим текущий режим работы
-    if     (R.getModeState() == AUTOMODE)      Serial.print("AUTOMODE");
-    else if(R.getModeState() == MANUALMODE)    Serial.print("MANUALMODE");
-    else if(R.getModeState() == ERRORMODE)     Serial.print("ERRORMODE");
-    
-    digitalWrite(PIN_Relay, R.OutRelay());      // Производит вычисления и выдает результат на Реле
-    // Выдаем управлящий сигнал на Реле
-
-    Serial.print(F(" ==> OutRelay: "));         // Выводи сотояние выхода регулятора подключенного к Реле
-    if (R.OutRelay())    Serial.print("ON");
-    else                Serial.print("OFF");
-
-    // Выводим состояние Логики регулятора
-    // Оно может отличаться от Out() так как Out() зависит от уровня логики (HIGH/LOW)
-    // а OutState() выдает именно состояние логики
-    Serial.print(F(" / OutState Logic: "));
-    if (R.OutState())    Serial.print("ON");
-    else                Serial.print("OFF");
-
-    Serial.println();
-    
-  }
 }

@@ -1,10 +1,17 @@
-/////////////////////////////////////////
-//      База Виртуальных PIN -ов       
+// Количество регуляторов
+const uint8_t  NumberOfRegulators = 3;
+
+
 
 ///////////////////////////////
 //      База PIN-ов
 
-const uint8_t PIN_Relay = D5;
+
+const uint8_t PIN_Relay[NumberOfRegulators] = {
+  D5,
+  D6,
+  D7,
+};
 
 // Переменные для таймера на millis();
 uint32_t ms;            // Хранит время с начала работы МК
@@ -25,10 +32,10 @@ const uint32_t TIMEOUT_R = 1000;  // Частота опроса датчика 
 //   База переменных для подключения   //
 
 // Логин и пароль от WiFi
-String _ssid     = "MTS_sib.eng24"; // Для хранения SSID
-String _password = "2404498A"; // Для хранения пароля сети
+String _ssid     = "Redmi"; // Для хранения SSID
+String _password = "7c8561a57ba3"; // Для хранения пароля сети
 
 // Ключ Blynk
-String _authB = "1bceb51ed96648b199df791079c176c6";    // AUTH токен Blynk
-String _serverB = "blynk-cloud.com";                   // Сервер Blynk "blynk-cloud.com"
+String _authB = "dca2a6bd83d3401f80b4e477bcc3a9a4";    // AUTH токен Blynk
+String _serverB = "84.22.137.78";                      // Сервер Blynk "blynk-cloud.com"
 String _portB = "8080";                                // Порт сервера Blynk "8080"
