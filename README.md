@@ -6,11 +6,11 @@ url: https://www.youtube.com/channel/UCih0Gcl9IEdkR8deDJCiodg</br>
 
 **The temperature controller works with AVR and ESP.
 </br> Advantages</br>** 
-- Controller type (HEATER, COOLER) < / br>
-- Controller mode (Automatic/Manual/Error)(AUTOMODE, MANUALMODE, ERRORMODE) </br>
+- Controller type (HEATER, COOLER)</ br>
+- Controller mode (Automatic/Manual/Error)(AUTOMODE, MANUALMODE, ERRORMODE)</br>
 - All settings are stored in the EEPROM</br> 
 - You can configure the output of the Controller to work with forward and reverse logic RLL (Relay Logic Level) </br>
-- Many examples. There are examples of working with <a href=”http://docs.blynk.cc”>Blynk</a>< / br>
+- Many examples. There are examples of working with <a href=”http://docs.blynk.cc”>Blynk</a></br>
 
 **Регулятор температуры работает с AVR и ESP. </br>
 Преимущества</br>**
