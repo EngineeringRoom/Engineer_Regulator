@@ -4,6 +4,11 @@ Autor: Alexey Obushenkov</br>
 email: sib.eng24@gmail.com</br>
 url: https://www.youtube.com/channel/UCih0Gcl9IEdkR8deDJCiodg</br>
 
+< b>The temperature controller works with AVR and ESP. </br> Advantages</br> < / b> - Controller type (HEATER, COOLER) < / br> - Controller mode (Automatic/Manual/Error)(AUTOMODE, MANUALMODE, ERRORMODE) </br>- All settings are stored in the EEPROM</br> - You can configure the output of the Controller to work with forward and reverse logic RLL (Relay Logic Level) </br> - Many examples. There are examples of working with <a href=”http://docs.blynk.cc”>Blynk</a>< / br><b>Регулятор температуры работает с AVR и ESP. </br> Преимущества</br> </b>- Тип регулятора(HEATER, COOLER) </br>- Режим регулятора (Автоматический/Ручной/Ошибка)(AUTOMODE, MANUALMODE, ERRORMODE) </br>- Все настройки храниться в EEPROM</br>- Можно настроит выход Регулятора для работы с прямой и обратной логикой RLL(Relay Logic Level) </br>- Много примеров. Есть примеры работы с <a href=”http://docs.blynk.cc”>Blynk</a></br>
+category=Sensors
+url=https://github.com/EngineeringRoom/Engineer_Regulator
+architectures=avr,esp8266
+
 Это библиотека для реализует объект Регулятор температуры. С гистирезисом.</br>
 подключите в скетче библиотеку <Engineer_Regulator.h></br>
 Объявите класс Regulator</br>
