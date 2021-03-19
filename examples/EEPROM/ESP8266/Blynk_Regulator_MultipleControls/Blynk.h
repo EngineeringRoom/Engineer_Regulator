@@ -47,9 +47,9 @@ BLYNK_WRITE(20) {if(param.asInt()) R[0].setAuto(); else R[0].setManual();}
 BLYNK_WRITE(21) {if(param.asInt()) R[1].setAuto(); else R[1].setManual();}
 BLYNK_WRITE(22) {if(param.asInt()) R[2].setAuto(); else R[2].setManual();}
 
-BLYNK_WRITE(30) {if(param.asInt()) R[0].setManualON(); else R[0].setManualOFF(); Blynk.virtualWrite(VPIN_ButtonMode[0], 0);}
-BLYNK_WRITE(31) {if(param.asInt()) R[1].setManualON(); else R[1].setManualOFF(); Blynk.virtualWrite(VPIN_ButtonMode[1], 0);}
-BLYNK_WRITE(32) {if(param.asInt()) R[2].setManualON(); else R[2].setManualOFF(); Blynk.virtualWrite(VPIN_ButtonMode[2], 0);}
+BLYNK_WRITE(30) {if(param.asInt()) R[0].setManualON(); else R[0].setManualOFF(); Blynk.virtualWrite(VPIN_ButtonMode[0], MANUALMODE);}
+BLYNK_WRITE(31) {if(param.asInt()) R[1].setManualON(); else R[1].setManualOFF(); Blynk.virtualWrite(VPIN_ButtonMode[1], MANUALMODE);}
+BLYNK_WRITE(32) {if(param.asInt()) R[2].setManualON(); else R[2].setManualOFF(); Blynk.virtualWrite(VPIN_ButtonMode[2], MANUALMODE);}
 
 
   int i=0;
@@ -64,45 +64,32 @@ BLYNK_WRITE(32) {if(param.asInt()) R[2].setManualON(); else R[2].setManualOFF();
   }
   
 void loopBlynk(){
-
-
   if(i >= RegulatorEEPROM_ESP::getCount()) i=0;  
-  Serial.print("i = "); Serial.println(i);
-  //for (int i=0; i < RegulatorEEPROM_ESP::getCount(); i++){
+
 //    float Temp;
 //    if(i==0) Temp = loopSensorBUG();
 //    else     Temp = loopSensor1();
     
-      digitalWrite(PIN_Relay[i], R[i].OutRelay(loopSensor1()));            // Принемаем показания от датчика температуры
-                                                                  // и тут же вычисляем результат и отпраляем команду на реле
-
-
+      digitalWrite(PIN_Relay[i], R[i].OutRelay(loopSensor1()));  // Принемаем показания от датчика температуры
+                                                                 // и тут же вычисляем результат и отпраляем команду на реле
 
       switch (R[i].getModeState()) {
-          case AUTOMODE:
-            Blynk.virtualWrite(VPIN_ButtonMode[i], 1);   // Отправляем данные о какой сечас режим (AUTOMODE, MANUALMODE, ERRORMODE)
-            Blynk.virtualWrite(VPIN_Gauge[i], R[i].getTempIn());        // Отправляем данные от Датчика
-            Blynk.virtualWrite(VPIN_ButtonState[i], R[i].OutState());   // Отправляем данные о состоянии Логики
-            UpdateTempSet();
-            //Blynk.virtualWrite(VPIN_NumericInput[i], R[i].getTempSet());   // Отправляем данные о Настройки
-            break;
           case MANUALMODE:
-            Blynk.virtualWrite(VPIN_ButtonMode[i], 0);   // Отправляем данные о какой сечас режим (AUTOMODE, MANUALMODE, ERRORMODE)
+          case AUTOMODE:
+            Blynk.virtualWrite(VPIN_ButtonMode[i], R[i].getModeState());// Отправляем данные о какой сечас режим (ERRORMODE, MANUALMODE, AUTOMODE)
             Blynk.virtualWrite(VPIN_Gauge[i], R[i].getTempIn());        // Отправляем данные от Датчика
             Blynk.virtualWrite(VPIN_ButtonState[i], R[i].OutState());   // Отправляем данные о состоянии Логики
-            UpdateTempSet();
-           // Blynk.virtualWrite(VPIN_NumericInput[i], R[i].getTempSet());   // Отправляем данные о Настройки
+            UpdateTempSet();                                            // Отправляем данные о Уставке 
             break;
           case ERRORMODE:
             String msg="Error";
-            Blynk.virtualWrite(VPIN_ButtonMode[i], 0);   // Отправляем данные о какой сечас режим (AUTOMODE, MANUALMODE, ERRORMODE)
-            Blynk.virtualWrite(VPIN_Gauge[i], msg);        // Отправляем данные от Датчика
+            Blynk.virtualWrite(VPIN_ButtonMode[i], R[i].getModeState());// Отправляем данные о какой сечас режим (ERRORMODE, MANUALMODE, AUTOMODE)
+            Blynk.virtualWrite(VPIN_Gauge[i], msg);                     // Отправляем данные от Датчика
             Blynk.virtualWrite(VPIN_ButtonState[i], R[i].OutState());   // Отправляем данные о состоянии Логики
-            UpdateTempSet();
-            //Blynk.virtualWrite(VPIN_NumericInput[i], R[i].getTempSet());  // Отправляем данные о Настройки
-            break;            
+            UpdateTempSet();                                            // Отправляем данные о Уставке
+            break;                         
         }
         
    if(i < RegulatorEEPROM_ESP::getCount()) i++;
-  //}//for
+
 }
