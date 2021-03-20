@@ -82,9 +82,9 @@ enum enumRegulatorType {
 
 // Перечесление Режимов регулятора
 enum enumRegulatorMode {
-  AUTOMODE,
+  ERRORMODE,
   MANUALMODE,
-  ERRORMODE
+  AUTOMODE
 };
 
 class Regulator {
