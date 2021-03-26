@@ -44,6 +44,7 @@ public:
 
     RegulatorEEPROM_AVR() {
       initEEPROM();
+	  _TempIn = _TempSet;
     }
 protected:    
     // Читаем все настройки из EEPROM

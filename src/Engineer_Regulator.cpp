@@ -3,9 +3,14 @@
 
 #include "Engineer_Regulator.h"
 
+bool Regulator::RLL(const bool &State){
+	if (_RLL) return  State;
+    else	  return !State;
+}
+
 // Производит вычисления и выдает результат на Реле
 bool Regulator::OutRelay() {
-  // Если включен автоматический режим
+// Если включен автоматический режим
   if (_Mode == AUTOMODE) {
     if (_RegulatorType == HEATER) {    // Если Тип регулятора Нагреватель
       if (_TempIn < _TempSet - _Delta) {
@@ -16,40 +21,30 @@ bool Regulator::OutRelay() {
       }
     }
     else if (_RegulatorType == COOLER) { // Если Тип регулятора Охладитель
-      if (_TempIn > _TempSet - _Delta) {
+      if (_TempIn > _TempSet + _Delta) {
         _State = HIGH;
       }
-      if (_TempIn < _TempSet + _Delta) {
+      if (_TempIn < _TempSet - _Delta) {
         _State = LOW;
       }
     }
-	// Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)
-	if (_RLL) {
-      return  _State;
-    }
-    else     {
-      return !_State;
-    }
+	return RLL(_State);
   }
-  // Если включен ручной режим
+// Если включен ручной режим
   else if (_Mode == MANUALMODE) {
     // Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)
-    if (_RLL) {
-      return  _State;
-    }
-    else     {
-      return !_State;
-    }
+	return RLL(_State);
   }
-  // Если включен режим ошибка
-  else  { // if (_Mode == ERRORMODE)
+// Если включен режим ошибка
+  else if (_Mode == ERRORMODE)  { // 
     // Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)
-    if (_RLL) {
-      return  _ErrState;
-    }
-    else     {
-      return !_ErrState;
-    }
+	_State = _ErrState;
+	return RLL(_State);
+  }
+  else { // 
+    // Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)
+	_State = _ErrState;
+	return RLL(_State);
   }
 }
 
@@ -170,6 +165,10 @@ bool   Regulator::getRLL() {
   return _RLL;
 }
 
+// Возвращает Безопасное состояние реле
+bool Regulator::getErrorState(){
+  return _ErrState;
+}	
 
 // Возвращает Дельта (Гистерезис)
 float Regulator::getDelta() {

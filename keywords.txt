@@ -31,6 +31,7 @@ Alarm	KEYWORD2
 getModeState	KEYWORD2
 getType	KEYWORD2
 getRLL	KEYWORD2
+getErrorState	KEYWORD2
 getDelta	KEYWORD2
 getTempSet	KEYWORD2
 getTempIn	KEYWORD2

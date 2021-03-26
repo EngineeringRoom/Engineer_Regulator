@@ -82,9 +82,9 @@ enum enumRegulatorType {
 
 // Перечесление Режимов регулятора
 enum enumRegulatorMode {
-  ERRORMODE,
-  MANUALMODE,
-  AUTOMODE
+  ERRORMODE=0,
+  MANUALMODE=1,
+  AUTOMODE=2
 };
 
 class Regulator {
@@ -103,6 +103,7 @@ class Regulator {
     bool _ErrState;     // Состояние выхода (Включен/Выключен)(HIGH/LOW) При ошибке датчика
     bool _RLL;          // Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)
 
+	bool RLL(const bool &State);	// В зависимости от _RLL Прямая или обратная логика навыходи
   public:
 
     // Конструктор класса
@@ -148,7 +149,9 @@ class Regulator {
 
     uint8_t getType();  // Возвращает тип регулятора(HEATER, COOLER)
     bool   getRLL();   // Возвращает тип выходного сигнала Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)
-
+	
+	bool getErrorState(); // Возвращает Безопасное состояние реле
+	
     float getDelta();    // Возвращает Дельта (Гистерезис)
     float getTempSet();  // Возвращает Уставкe температуры
     float getTempIn();   // Возвращает Температура от датчика температуры

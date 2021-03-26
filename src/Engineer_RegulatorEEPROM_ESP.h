@@ -54,6 +54,7 @@ public:
 
     RegulatorEEPROM_ESP() {
       initEEPROM();
+	  _TempIn = _TempSet;
     }
 protected:    
     // Читаем все настройки из EEPROM
