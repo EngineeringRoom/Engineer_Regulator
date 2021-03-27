@@ -23,6 +23,7 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
       # Runs Arduino          
       - name: arduino/arduino-lint-action
       # You may pin to the exact commit or the version.
