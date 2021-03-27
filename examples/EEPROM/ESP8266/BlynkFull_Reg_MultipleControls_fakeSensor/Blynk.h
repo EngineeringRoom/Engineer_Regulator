@@ -139,10 +139,10 @@ BLYNK_CONNECTED() {
       Blynk.virtualWrite(VPIN_Tune_Hysteresis, R[i].getDelta());
     }
   }
-
+/*
 // Обновляем в Blynk тип регулятора(HEATER, COOLER) если она изменилась
   void UpdateSswitchType(const int &i){
-    static uint8_t lastSswitchType[NumberOfRegulators];    // Массив Последней уставки гистерезиса
+    static uint8_t lastSswitchType[NumberOfRegulators];    // Массив Последней Типа регулятора
     if(lastSswitchType[i] != R[i].getType()){
       lastSswitchType[i] = R[i].getType();
       Blynk.virtualWrite(VPIN_Tune_SswitchType, R[i].getType()+1);
@@ -151,7 +151,7 @@ BLYNK_CONNECTED() {
 
 // Обновляем в Blynk тип выходного сигнала Уровень Логики Реле. Каким сигналом управляется (HIGH/LOW)
   void UpdateSswitchRLL(const int &i){
-    static bool lastSswitchRLL[NumberOfRegulators];    // Массив Последней уставки гистерезиса
+    static bool lastSswitchRLL[NumberOfRegulators];    // Массив Последней уставки Уровень Логики Реле
     if(lastSswitchRLL[i] != R[i].getRLL()){
       lastSswitchRLL[i] = R[i].getRLL();
       Blynk.virtualWrite(VPIN_Tune_SswitchRLL, (uint8_t)R[i].getRLL()+1);
@@ -160,13 +160,13 @@ BLYNK_CONNECTED() {
 
 // Обновляем в Blynk безопасное состояние логики реле если она изменилась
   void UpdateSswitchSafeState(const int &i){
-    static bool lastSswitchSafeState[NumberOfRegulators];    // Массив Последней уставки гистерезиса
+    static bool lastSswitchSafeState[NumberOfRegulators];    // Массив Последней уставки безопасное состояние логики реле
     if(lastSswitchSafeState[i] != R[i].getRLL()){
       lastSswitchSafeState[i] = R[i].getRLL();
       Blynk.virtualWrite(VPIN_Tune_SswitchSafeState, (uint8_t)R[i].getErrorState()+1);
     }
   }
- 
+*/ 
   // Обновляем в Blynk настройки регулятора если было изменение
   // Отображаем ошибку
   void UpdateValueDisplay(const int &i){
@@ -240,24 +240,18 @@ void UpdateScreen(const uint8_t &ID){
 void loopBlynk(){
   timer.disable(IDt_loopBlynk); 
   for(int i=0; i < RegulatorEEPROM_ESP::getCount(); i++){
-    digitalWrite(PIN_Relay[i], R[i].OutRelay(ReadSensors(i)));      // Считываем температуру от датчика и
+    digitalWrite(PIN_Relay[i], R[i].OutRelay(ReadSensors(i)));  // Считываем температуру от датчика, вычесляем результат и управляем реле
 // В основном экране
     Blynk.virtualWrite(VPIN_Gauge[i], R[i].getTempIn());        // Отправляем данные от Датчика
     UpdateValueDisplay(i);                                      // Отправляем информационное сообщение на ValueDisplay
     UpdateTempSet(i);                                           // Отправляем данные о Уставке 
     if(R[i].OutState())ledState[i].on(); else ledState[i].off();// Отправляем данные о состоянии выхода
-  }
+  }// for
+  
 // В настройках регулятора
     Blynk.virtualWrite(VPIN_Tune_Gauge, R[RegID].getTempIn());        // Отправляем данные от Датчика
     Blynk.virtualWrite(VPIN_Tune_ButtonState, R[RegID].OutState());   // Отправляем данные о состоянии Логики
-
-//    UpdateTempSet(RegID);                                         // Отправляем данные о Уставке 
-//    UpdateHysteresis(RegID);                                      // Отправляем данные о Гистерезисе
-//    UpdateValueDisplay(RegID);                                    // Отправляем информационное сообщение на ValueDisplay
-//    UpdateSswitchType(RegID);                                     // Отправляем Тип регулятора (HEATER, COOLER)
-//    UpdateSswitchRLL(RegID);                                      // Отправляем тип выходного сигнала Уровень Логики Реле.(HIGH/LOW)
-//    UpdateSswitchSafeState(RegID);                                // Отправляем в Blynk безопасное состояние логики реле если она изменилась
-          
+        
     switch (R[RegID].getModeState()) {
       case MANUALMODE:
       case AUTOMODE:
@@ -265,7 +259,8 @@ void loopBlynk(){
         UpdateProperty(RegID);                                        // Отправляем данные о какой сечас режим (ERRORMODE, MANUALMODE, AUTOMODE)
         break;
       case ERRORMODE:
-        Blynk.virtualWrite(VPIN_Tune_ButtonMode, AUTOMODE);            // Отправляем данные о какой сечас режим (ERRORMODE, MANUALMODE, AUTOMODE)
+        Blynk.virtualWrite(VPIN_Tune_ButtonMode, AUTOMODE);   // Отправляем данные какой сечас режим и AUTOMODE не просто так и это не ошибка
+                                                              // что бы перейти по нажатию кнопки в MANUALMODE
         UpdateProperty(RegID);
         break;                     
     }       

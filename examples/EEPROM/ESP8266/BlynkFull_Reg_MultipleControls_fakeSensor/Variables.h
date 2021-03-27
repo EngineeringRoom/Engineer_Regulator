@@ -76,14 +76,10 @@ uint32_t ms;            // Хранит время с начала работы 
 //   База переменных для подключения   //
 
 // Логин и пароль от WiFi
-//String _ssid     = "Redmi"; // Для хранения SSID
-//String _password = "7c8561a57ba3"; // Для хранения пароля сети
-
-// Логин и пароль от WiFi
-String _ssid     = "dlink11"; // Для хранения SSID
-String _password = "2229841212"; // Для хранения пароля сети
+String _ssid     = "YourNetworkName"; // Для хранения SSID
+String _password = "YourPassword"; // Для хранения пароля сети
 
 // Ключ Blynk
-String _authB = "3b23aa467cca4103a047ef0cc386a0d4";    // AUTH токен Blynk
-String _serverB = "84.22.137.78";                      // Сервер Blynk "blynk-cloud.com"
+String _authB = "11112222333344445555666677778888";    // AUTH токен Blynk
+String _serverB = "blynk-cloud.com";                   // Сервер Blynk "blynk-cloud.com"
 String _portB = "8080";                                // Порт сервера Blynk "8080"
