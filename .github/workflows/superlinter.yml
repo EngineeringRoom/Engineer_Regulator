@@ -23,3 +23,14 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+on: [push, pull_request]
+jobs:
+ lint:
+ runs-on: ubuntu-latest
+    steps:
+ - uses: actions/checkout@v2
+ - uses: arduino/arduino-lint-action@v1
+        with:
+ library-manager: update
+          compliance: strict
