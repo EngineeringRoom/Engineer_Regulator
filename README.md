@@ -43,7 +43,7 @@ url: https://www.youtube.com/channel/UCih0Gcl9IEdkR8deDJCiodg</br>
 Ну и для удобства все методы класса доступные для вас.
 
 
-##**// Set "Сетеры"**
+## // Set "Сетеры"
 
 **R.setAuto();**      // Устанавливаем (Автоматический Режим)</br>
 
@@ -64,7 +64,7 @@ url: https://www.youtube.com/channel/UCih0Gcl9IEdkR8deDJCiodg</br>
 **R.setFactorySettings();**    // Сброс настроек в заводские</br>
 **R.setAllFactorySettings();** // Сбросить настройки всех Экземпляров класса после перезагрузки устройства</br></br>
 
-##**// Get "Гетеры"**</br>
+## // Get "Гетеры"
 **R.Alarm();**         // (bool) Возвращает Сигнал Аварии (от датчика)</br>
 **R.getModeState();**  // (uint8_t) Возвращает режим регулятора состояние (Автоматический/Ручной/Ошибка)(AUTOMODE, MANUALMODE, ERRORMODE)</br></br>
 
