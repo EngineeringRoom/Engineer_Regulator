@@ -1,3 +1,5 @@
+name: Arduino Library CI
+
 on.: [push, pull_request]
 jobs:
  lint:
