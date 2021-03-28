@@ -1,8 +1,11 @@
 name: Arduino Library CI
-on: [push, pull_request]
+on.: [push, pull_request]
 jobs:
-  lint:
-    runs-on: ubuntu-latest
+ lint:
+ runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: arduino/arduino-lint-action@v1
+ - uses: actions/checkout@v2
+ - uses: arduino/arduino-lint-action@v1
+        with:
+ library-manager: 
+          updatecompliance: strict
