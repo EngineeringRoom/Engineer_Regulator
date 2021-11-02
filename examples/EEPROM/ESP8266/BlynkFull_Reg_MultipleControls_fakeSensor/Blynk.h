@@ -245,6 +245,7 @@ void loopBlynk(){
     Blynk.virtualWrite(VPIN_Gauge[i], R[i].getTempIn());        // Отправляем данные от Датчика
     UpdateValueDisplay(i);                                      // Отправляем информационное сообщение на ValueDisplay
     UpdateTempSet(i);                                           // Отправляем данные о Уставке 
+    UpdateHysteresis(i);                                        // Оптравлляем данные по Гистерезису
     if(R[i].OutState())ledState[i].on(); else ledState[i].off();// Отправляем данные о состоянии выхода
   }// for
   
